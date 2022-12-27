@@ -15,4 +15,5 @@ export default defineConfig({
   build: {
     outDir: "docs",
   },
+  base: "/practice-tip-calculator-app/",
 });
