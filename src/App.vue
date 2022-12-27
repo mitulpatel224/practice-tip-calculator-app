@@ -1,14 +1,12 @@
 <script setup lang="ts">
+import TheHeader from './components/Header.vue';
 import TipCalculator from "./components/Calculator.vue";
+
 </script>
 
 <template>
-  <header>
-    <h2>
-      SPLITTER
-    </h2>
-  </header>
   <main>
+    <TheHeader />
     <TipCalculator />
   </main>
 
@@ -35,8 +33,9 @@ import TipCalculator from "./components/Calculator.vue";
 
     main {
       height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: center;
+      // align-items: center;
     }
   </style>
