@@ -15,4 +15,8 @@ export default defineConfig({
   build: {
     outDir: "docs",
   },
+  base:
+    process.env.NODE_END === "production"
+      ? "/practice-tip-calculator-app/"
+      : "/",
 });
