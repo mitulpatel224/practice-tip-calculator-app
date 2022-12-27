@@ -6,7 +6,8 @@
         <div class="bill-wrapper">
           <div class="ctrl bill-ctrl">
             <label for="bill">Bill</label>
-            <input type="number" name="bill" id="bill" v-model="billAmount" @change="billChange" placeholder="0" />
+            <input type="number" name="bill" id="bill" min="0" v-model="billAmount" @change="billChange"
+              placeholder="0" />
           </div>
         </div>
 
@@ -47,7 +48,7 @@
         <div class="persons-wrapper">
           <div class="ctrl person-ctrl">
             <label for="person">Number of People</label>
-            <input type="number" name="person" id="person" v-model="totalPerson" @change="personChange"
+            <input type="number" name="person" id="person" min="0" v-model="totalPerson" @change="personChange"
               placeholder="0" />
           </div>
         </div>
@@ -72,7 +73,7 @@
           </div>
         </div>
         <div class="tip-reset">
-          tton>
+          <button type="reset">RESET</button>
         </div>
       </div>
     </form>
@@ -98,12 +99,12 @@ export default {
     calculatedTipValue() {
       const person = this.totalPerson || 1;
       const totalTip = this.total.tipValue / person;
-      return totalTip || 0;
+      return Number(totalTip || 0).toFixed(2);
     },
     calculatedTotal() {
       const person = this.totalPerson || 1;
       const total = this.total.totalValue / person;
-      return total || 0;
+      return Number(total || 0).toFixed(2);
     }
   },
   methods: {
