@@ -38,4 +38,13 @@ import TipCalculator from "./components/Calculator.vue";
       // justify-content: center;
       // align-items: center;
     }
+
+    @media (min-width: 1024px) {
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
   </style>

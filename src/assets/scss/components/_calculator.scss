@@ -1,16 +1,13 @@
 .tip-calculator {
-  //   width: 1024px;
+  // width: 1024px;
   padding: 20px;
   border-radius: 10px;
   background-color: $White;
-  // box-shadow: 20px 20px 20px 0px rgba(123, 123, 123, 0.8);
+  box-shadow: 20px 20px 20px 0px rgba(123, 123, 123, 0.3);
+
   // all child div
-  & form > div {
+  .form-ctrl-wrapper > div {
     margin-bottom: 30px;
-  }
-  // last child div
-  & :last-child {
-    margin-bottom: auto;
   }
 
   .bill-wrapper {
@@ -35,7 +32,7 @@
         justify-content: space-between;
         flex-wrap: wrap;
         .radio-ctrl {
-          width: 146px;
+          width: 136px;
           label {
             height: 45px;
             display: flex;
@@ -45,11 +42,20 @@
             color: $White;
             background-color: $secondary;
             border-radius: 6px;
+            cursor: pointer;
+            &:hover {
+              color: $secondary;
+              background-color: $primary;
+            }
           }
           input[type="number"] {
             height: 45px;
-            width: 146px;
+            width: 136px;
             padding: 10px;
+            border: 1px solid $VeryLightGrayishCyan;
+            &:focus {
+              border: 1px solid $secondary;
+            }
           }
         }
         .radio-ctrl.active {
@@ -100,6 +106,32 @@
         font-weight: 700;
         color: $secondary;
         background-color: $primary;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .tip-calculator {
+    width: 1024px;
+    padding: 30px;
+    form {
+      display: flex;
+      gap: 30px;
+      height: 100%;
+      .form-ctrl-wrapper,
+      .tip-amount-wrapper {
+        width: 50%;
+        height: 100%;
+        flex-grow: 1;
+      }
+      .tip-amount-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .value {
+          font-size: 42px;
+        }
       }
     }
   }

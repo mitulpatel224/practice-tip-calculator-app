@@ -1,73 +1,75 @@
 <template>
   <section class="tip-calculator">
     <form @reset="resetForm">
-      <!-- BILL AMOUNT -->
-      <div class="bill-wrapper">
-        <div class="ctrl bill-ctrl">
-          <label for="bill">Bill</label>
-          <input type="number" name="bill" id="bill" v-model="billAmount" placeholder="0" />
+      <div class="form-ctrl-wrapper">
+        <!-- BILL AMOUNT -->
+        <div class="bill-wrapper">
+          <div class="ctrl bill-ctrl">
+            <label for="bill">Bill</label>
+            <input type="number" name="bill" id="bill" v-model="billAmount" placeholder="0" />
+          </div>
         </div>
-      </div>
 
-      <!-- TIP SELECTION -->
-      <div class="tips-wrapper">
-        <div class="ctrl tips-ctrl">
-          <label for="r1">Select Tip %</label>
-          <div class="radio-group">
-            <div class="radio-ctrl">
-              <label for="r1">5%</label>
-              <input type="radio" name="r1" id="r1" value="5" v-model="selectedTip" @change="tipChange">
-            </div>
-            <div class="radio-ctrl">
-              <label for="r2">10%</label>
-              <input type="radio" name="r1" id="r2" value="10" v-model="selectedTip" @change="tipChange">
-            </div>
-            <div class="radio-ctrl">
-              <label for="r3">15%</label>
-              <input type="radio" name="r1" id="r3" value="15" v-model="selectedTip" @change="tipChange">
-            </div>
-            <div class="radio-ctrl">
-              <label for="r4">25%</label>
-              <input type="radio" name="r1" id="r4" value="25" v-model="selectedTip" @change="tipChange">
-            </div>
-            <div class="radio-ctrl">
-              <label for="r5">50%</label>
-              <input type="radio" name="r1" id="r5" value="50" v-model="selectedTip" @change="tipChange">
-            </div>
-            <div class="radio-ctrl">
-              <input type="number" name="customTip" id="custom-tip" placeholder="Custom" v-model="customTip"
-                @change="customTipChange($event)" />
+        <!-- TIP SELECTION -->
+        <div class="tips-wrapper">
+          <div class="ctrl tips-ctrl">
+            <label for="r1">Select Tip %</label>
+            <div class="radio-group">
+              <div class="radio-ctrl">
+                <label for="r1">5%</label>
+                <input type="radio" name="r1" id="r1" value="5" v-model="selectedTip" @change="tipChange">
+              </div>
+              <div class="radio-ctrl">
+                <label for="r2">10%</label>
+                <input type="radio" name="r1" id="r2" value="10" v-model="selectedTip" @change="tipChange">
+              </div>
+              <div class="radio-ctrl">
+                <label for="r3">15%</label>
+                <input type="radio" name="r1" id="r3" value="15" v-model="selectedTip" @change="tipChange">
+              </div>
+              <div class="radio-ctrl">
+                <label for="r4">25%</label>
+                <input type="radio" name="r1" id="r4" value="25" v-model="selectedTip" @change="tipChange">
+              </div>
+              <div class="radio-ctrl">
+                <label for="r5">50%</label>
+                <input type="radio" name="r1" id="r5" value="50" v-model="selectedTip" @change="tipChange">
+              </div>
+              <div class="radio-ctrl">
+                <input type="number" name="customTip" id="custom-tip" placeholder="Custom" v-model="customTip"
+                  @change="customTipChange($event)" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- PERSON SELECTION -->
-      <div class="persons-wrapper">
-        <div class="ctrl person-ctrl">
-          <label for="person">Number of People</label>
-          <input type="number" name="person" id="person" v-model="totalPerson" placeholder="0" />
+        <!-- PERSON SELECTION -->
+        <div class="persons-wrapper">
+          <div class="ctrl person-ctrl">
+            <label for="person">Number of People</label>
+            <input type="number" name="person" id="person" v-model="totalPerson" placeholder="0" />
+          </div>
         </div>
       </div>
-
       <!-- TIP CALCULATION -->
       <div class="tip-amount-wrapper">
-        <div class="tip-amount">
-          <div class="label">
-            <label>Tip Amount</label>
-            <p>/ person</p>
+        <div class="amount-wrapper">
+          <div class="tip-amount">
+            <div class="label">
+              <label>Tip Amount</label>
+              <p>/ person</p>
+            </div>
+            <div class="value"><span>$</span>{{ calculate?.tipValue }}</div>
           </div>
-          <div class="value"><span>$</span>{{ calculate?.tipValue }}</div>
-        </div>
 
-        <div class="total-amount">
-          <div class="label">
-            <label>Total</label>
-            <p>/ person</p>
+          <div class="total-amount">
+            <div class="label">
+              <label>Total</label>
+              <p>/ person</p>
+            </div>
+            <div class="value"><span>$</span>{{ calculate?.totalValue }}</div>
           </div>
-          <div class="value"><span>$</span>{{ calculate?.totalValue }}</div>
         </div>
-
         <div class="tip-reset">
           <button type="reset">RESET</button>
         </div>
