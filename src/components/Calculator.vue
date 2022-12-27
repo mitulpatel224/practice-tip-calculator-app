@@ -72,7 +72,7 @@
           </div>
         </div>
         <div class="tip-reset">
-          <button type="reset">RESET</button>
+          tton>
         </div>
       </div>
     </form>
@@ -107,8 +107,7 @@ export default {
     }
   },
   methods: {
-    resetForm: function (ev) {
-      console.log('reset', ev);
+    resetForm: function () {
       this.billAmount = null;
       this.totalPerson = null;
       this.selectedTip = null;
@@ -122,9 +121,8 @@ export default {
      * Custom tip change event handler
      * @param param0 Event
      */
-    customTipChange: function ({ target: { value } }: Event) {
-      console.log('custom-change');
-
+    customTipChange: function ({ target }: Event) {
+      const { value }: any = target;
       this.selectedTip = null;
       this.removeActiveRadio();
       this.customTip = value;
@@ -143,7 +141,7 @@ export default {
 
       this.removeActiveRadio();
       (<HTMLElement>parentElement).classList.add('active');
-      this.controlChange();
+      this.controlChange()
     },
     billChange: function () {
       console.log('bill-change');
