@@ -6,7 +6,7 @@
         <div class="bill-wrapper">
           <div class="ctrl bill-ctrl">
             <label for="bill">Bill</label>
-            <input type="number" name="bill" id="bill" v-model="billAmount" placeholder="0" />
+            <input type="number" name="bill" id="bill" v-model="billAmount" @change="billChange" placeholder="0" />
           </div>
         </div>
 
@@ -47,7 +47,8 @@
         <div class="persons-wrapper">
           <div class="ctrl person-ctrl">
             <label for="person">Number of People</label>
-            <input type="number" name="person" id="person" v-model="totalPerson" placeholder="0" />
+            <input type="number" name="person" id="person" v-model="totalPerson" @change="personChange"
+              placeholder="0" />
           </div>
         </div>
       </div>
@@ -59,7 +60,7 @@
               <label>Tip Amount</label>
               <p>/ person</p>
             </div>
-            <div class="value"><span>$</span>{{ calculate?.tipValue }}</div>
+            <div class="value"><span>$</span>{{ calculatedTipValue }}</div>
           </div>
 
           <div class="total-amount">
@@ -67,7 +68,7 @@
               <label>Total</label>
               <p>/ person</p>
             </div>
-            <div class="value"><span>$</span>{{ calculate?.totalValue }}</div>
+            <div class="value"><span>$</span>{{ calculatedTotal }}</div>
           </div>
         </div>
         <div class="tip-reset">
@@ -87,24 +88,47 @@ export default {
       totalPerson: null,
       selectedTip: null,
       customTip: null,
-      calculate: {
-        tipValue: 4.27,
-        totalValue: 32.79,
+      total: {
+        tipValue: 0,
+        totalValue: 0,
       },
     };
   },
+  computed: {
+    calculatedTipValue() {
+      const person = this.totalPerson || 1;
+      const totalTip = this.total.tipValue / person;
+      return totalTip || 0;
+    },
+    calculatedTotal() {
+      const person = this.totalPerson || 1;
+      const total = this.total.totalValue / person;
+      return total || 0;
+    }
+  },
   methods: {
     resetForm: function (ev) {
-      console.log('reset', ev)
+      console.log('reset', ev);
+      this.billAmount = null;
+      this.totalPerson = null;
+      this.selectedTip = null;
+      this.customTip = null;
+      this.total = {
+        tipValue: 0,
+        totalValue: 0,
+      };
     },
     /**
      * Custom tip change event handler
      * @param param0 Event
      */
     customTipChange: function ({ target: { value } }: Event) {
+      console.log('custom-change');
+
       this.selectedTip = null;
       this.removeActiveRadio();
       this.customTip = value;
+      this.controlChange();
     },
     /**
      * Tip(Radio control) change event handler
@@ -113,11 +137,25 @@ export default {
      * @param event Event
      */
     tipChange: function (event: Event) {
+      console.log('radio-change');
       this.customTip = null;
       const { parentElement } = <HTMLElement>event?.target;
 
       this.removeActiveRadio();
       (<HTMLElement>parentElement).classList.add('active');
+      this.controlChange();
+    },
+    billChange: function () {
+      console.log('bill-change');
+      this.controlChange();
+    },
+    personChange: function () {
+      console.log('person-change');
+      this.controlChange();
+    },
+    controlChange: function () {
+      this.calculateTip();
+      this.calculateTotal();
     },
     /**
      * To remove active state of an old Radio control
@@ -127,6 +165,21 @@ export default {
       for (const el of radioList) {
         el.classList.remove('active');
       }
+    },
+    getTotalTip: function () {
+      const bill = this.billAmount || 0;
+      const tip = Number(this.selectedTip || this.customTip || 0);
+      const totalTip = ((bill * tip) / 100);
+      return totalTip || 0;
+    },
+    calculateTip: function () {
+      const totalTip = this.getTotalTip();
+      this.total.tipValue = totalTip || 0;
+    },
+    calculateTotal: function () {
+      const bill = this.billAmount || 0;
+      const totalAmount = this.getTotalTip() + bill;
+      this.total.totalValue = totalAmount || 0
     }
   }
 };
