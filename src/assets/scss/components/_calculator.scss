@@ -1,0 +1,22 @@
+.tip-calculator {
+  width: 1024px;
+  padding: 30px;
+  border-radius: 10px;
+  // box-shadow: 20px 20px 20px 0px rgba(123, 123, 123, 0.8);
+  background-color: $White;
+
+  .bill-wrapper {
+    border: 1px solid red;
+  }
+
+  .tips-wrapper {
+    border: 1px solid green;
+  }
+
+  .persons-wrapper {
+    border: 1px solid black;
+  }
+  .tip-amount-wrapper{
+    border: 1px solid blue;
+  }
+}

@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  font-family: $fontFamily;
+  background-color: $LightGrayishCyan;
+}
+
+input[type="number"] {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 20px;
+}
+p {
+  font-size: 18px;
+}
